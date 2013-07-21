@@ -1,0 +1,56 @@
+.header {
+	background-image: url('../img/banner_notext.png');
+	background-repeat: no-repeat;
+	height: 484px;
+	width: 100%;
+	margin-top: -10px;
+	margin-bottom: 10px;
+	display: inline-block !important;
+	border-bottom: 5px solid #59ABDB;
+}
+
+.headerText {
+	color: white;
+	font-family: 'Kaushan Script', cursive;
+	font-size: 35pt;
+	margin-top: 150px;
+	text-align: center;
+}
+
+.headerSubText {
+	color: white;
+	font-family: 'Kaushan Script', cursive;
+	font-size: 24pt;
+	margin: 25px;
+	text-align: center;
+}
+	
+.tab_heading {
+	font-weight: bold;
+	margin: 20px;
+	font-size: 16pt;
+	font-family: 'Fauna One', serif;
+}
+
+/*Override top-bar margins*/
+.top-bar {
+	margin-bottom: 0;
+}
+
+pre {
+	font-size: 10.5pt;
+	word-spacing: 2px;
+	font-family: 'Courier New', Courier, monospace;
+	border: none !important;
+	overflow: auto;
+	overflow-y: hidden;	
+}
+
+hr {
+	background-color: #65A8F0;
+	height: 5px;
+	border: 0; 
+	border-top: 5px solid #65A8F0;
+}
+
+	  

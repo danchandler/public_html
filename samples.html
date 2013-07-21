@@ -1,0 +1,333 @@
+
+<html>
+	<head>		
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		
+		<link rel="stylesheet" href="css/foundation.css" />
+		<link rel="stylesheet" href="css/global.css" />
+		<link rel="stylesheet" href="css/site.css" />
+		<link type="text/css" rel="stylesheet"  href="css/prettify.css"/>
+		<link href='http://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+
+		
+		<script src="js/vendor/custom.modernizr.js"></script>
+		<script src="js/prettify/prettify.js"></script>
+		<script src="js/prettify/run-prettify.js"></script>
+		<script src="js/prettify/lang-css.js"></script>  
+	
+		
+
+		
+	</head>
+	<body>
+	<nav class="top-bar">
+	  <section class="top-bar-section">
+		<!-- Left Nav Section -->
+		<ul class="left">
+			<li class="active"><a href="index.html">Home<img src="img/icons/home-icon.png" alt="Home" style="padding-left: 10px; padding-bottom: 6px;"/></a></li>
+			<li class="divider"></li>
+			<li class="has-dropdown"><a href="portfolio.html">Portfolio<img src="img/icons/portfolio-icon.png" alt="Portfolio" style="padding-left: 10px; padding-bottom: 6px;"/></a> 
+				<ul class="dropdown">
+					<li class="divider"></li>
+					<li><a href="portfolio.html#work">Work<img src="img/icons/work-icon.png" alt="Work portfolio" style="padding-left: 10px; padding-bottom: 6px;"/></a></li>
+					<li class="divider"></li>
+					<li><a href="portfolio.html#academic">Academic<img src="img/icons/academic-icon.png" alt="Academic portfolio" style="padding-left: 10px; padding-bottom: 6px;"/></a></li>
+				</ul>
+			</li>
+		  <li><a href="samples.html">Code samples<img src="img/icons/codesamples-icon.png" alt="Code samples" style="padding-left: 10px; padding-bottom: 6px;"/></a></li>
+		  <li class="divider"></li>
+		</ul>
+		
+		<ul class="right">
+			<li class="divider show-for-small"></li>
+			<li class="has-form">
+				<a href="#" class="button" data-dropdown="contentDrop" style="background-color: #2E4AFF; border: none;">Contact me</a>
+			</li>
+		</ul>
+		
+	  </section>
+	</nav>
+	<ul id="contentDrop" class="f-dropdown content small" data-dropdown-content>
+		<div class="row">
+			<div class="large-2 columns">
+				<img src="img/icons/email-icon.png"/>
+			</div>
+			<div class="large-10 columns">
+				<a href="mailto:danchandler@live.ca">danchandler@live.ca</a>
+			</div>
+		</div>
+		<hr/>
+		<div class="row">
+			<div class="large-2 columns">
+				<img src="img/icons/github-icon.png"/>
+			</div>
+			<div class="large-10 columns">
+				<a href="https://github.com/danchandler">GitHub account</a>
+			</div>
+		</div>
+		<hr/>
+		<div class="row">
+			<div class="large-2 columns">
+				<img src="img/icons/linkedin-icon.png"/>
+			</div>
+			<div class="large-10 columns">
+				<a href="http://lnkd.in/7SPQY9">LinkedIn profile</a>
+			</div>
+		</div>
+		<hr/>		
+	</ul>
+
+
+	<div class="header">
+		<div class="headerText"><img src="img/portrait.png" alt="Dan Chandler" style="border: 3px solid white; margin: 10px"/><br/>Dan Chandler</div>
+		<div class="headerSubText">Ontario, Canada</div>
+	</div>	
+	
+	
+	
+	<div class="row">
+		<div class="large-12 columns">
+			<div class="panel">
+				<div class="row">
+					<div class="large-10 columns">
+						<a id="webgl_1"></a>
+						<h4 style="margin-bottom: 0">WebGL</h4>
+					</div>
+					
+					<div class="large-2 columns">
+						<p style="margin-bottom: 0"><i>July 07, 2013</i></p>
+					</div>
+				</div>
+				
+				<hr/>		
+				<p>Here's a starting WebGL example. I have two squares, one overlapped on top another. The code is below.</p>
+				<canvas id="mycanvas" width="800" height="500" style="padding-left: 60px; padding-bottom: 10px;"></canvas>
+				<div class="section-container accordion" data-section="accordion" data-options="one_up: false">
+					<section>
+						<p class="title" data-section-title><a href="#">Full vertex shader source</a></p>
+						<div class="content" data-section-content>
+							<pre class="prettyprint">					
+attribute vec2 aVertexPosition;
+
+void main() {
+	gl_Position = vec4(aVertexPosition, 0.0, 1.0);
+}
+							</pre>
+						</div>
+					</section>
+					<section>
+						<p class="title" data-section-title><a href="#">Full fragement shader source</a></p>
+						<div class="content" data-section-content>
+							<pre class="prettyprint">					
+#ifdef GL_ES
+precision highp float;
+#endif
+
+uniform vec4 uColor;
+
+void main() {
+	gl_FragColor = uColor;
+}
+							</pre>
+						</div>
+					</section>
+					<section>
+						<p class="title" data-section-title><a href="#">Full main source</a></p>
+						<div class="content" data-section-content>
+							<pre class="prettyprint">
+function init(){
+	canvas = document.getElementById("mycanvas");
+	gl = canvas.getContext("experimental-webgl");
+
+	gl.viewport(0, 0, canvas.width, canvas.height);	
+	gl.clearColor(0.513725, 0.78431372, 0.89411764705, 1);
+	gl.clear(gl.COLOR_BUFFER_BIT);
+
+	var v = document.getElementById("vertex").firstChild.nodeValue;
+	var f = document.getElementById("fragment").firstChild.nodeValue;
+	
+	var vs = gl.createShader(gl.VERTEX_SHADER);
+	gl.shaderSource(vs, v);
+	gl.compileShader(vs);
+	
+	var fs = gl.createShader(gl.FRAGMENT_SHADER);
+	gl.shaderSource(fs, f);
+	gl.compileShader(fs);
+
+	program = gl.createProgram();
+	gl.attachShader(program, vs);
+	gl.attachShader(program, fs);
+	gl.linkProgram(program);
+	
+	if (!gl.getShaderParameter(vs, gl.COMPILE_STATUS)) 
+		console.log(gl.getShaderInfoLog(vs));
+		
+	if (!gl.getShaderParameter(fs, gl.COMPILE_STATUS)) 
+		console.log(gl.getShaderInfoLog(fs));
+	
+	if (!gl.getProgramParameter(program, gl.LINK_STATUS)) 
+		console.log(gl.getProgramInfoLog(program));
+		
+	var aspect = canvas.width / canvas.height;
+	
+	var vertices = new Float32Array([
+		-0.5, 0.5*aspect, 0.5, 0.5*aspect,  0.5,-0.5*aspect,
+		-0.5, 0.5*aspect, 0.5,-0.5*aspect, -0.5,-0.5*aspect
+		]);
+	
+	vbuffer = gl.createBuffer();
+	gl.bindBuffer(gl.ARRAY_BUFFER, vbuffer);					
+	gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+	
+	itemSize = 2;
+	numItems = vertices.length / itemSize;
+
+	gl.useProgram(program); 
+
+	program.uColor = gl.getUniformLocation(program, "uColor");
+	gl.uniform4fv(program.uColor, [0.145098, 0.4235294, 0.53333333, 1.0]);
+
+	program.aVertexPosition = gl.getAttribLocation(program, "aVertexPosition");
+	gl.enableVertexAttribArray(program.aVertexPosition);
+	gl.vertexAttribPointer(program.aVertexPosition, itemSize, gl.FLOAT, false, 0, 0);
+
+	gl.drawArrays(gl.TRIANGLES, 0, numItems);
+}
+							</pre>
+					
+						</div>
+					</section>
+				</div>				
+				<p>Add the source as script HTML elements. Ensure that the shaders is type x-shader with an id for ther fragment and vertex shader. The init() function will be text/javascript type. Then, add one last script element with the following code:</p>
+				<pre class="prettyprint">
+(function() {
+	init();
+})();				
+				</pre>
+				<p>We're using an anonymous function that runs as soon as its processed.</p>
+			</div>
+		</div>		
+	</div>
+
+
+	<script>
+		document.write('<script src=' + ('__proto__' in {} ? 'js/vendor/zepto' : 'js/vendor/jquery') + '.js><\/script>')
+	</script>
+		
+	<script src="js/foundation.min.js"></script>
+  
+  
+	<script src="js/foundation/foundation.js"></script>
+	<script src="js/foundation/foundation.alerts.js"></script>
+	<script src="js/foundation/foundation.clearing.js"></script>
+	<script src="js/foundation/foundation.cookie.js"></script>
+	<script src="js/foundation/foundation.dropdown.js"></script>
+	<script src="js/foundation/foundation.forms.js"></script>
+	<script src="js/foundation/foundation.joyride.js"></script>
+	<script src="js/foundation/foundation.magellan.js"></script>
+	<script src="js/foundation/foundation.orbit.js"></script>
+	<script src="js/foundation/foundation.reveal.js"></script>
+	<script src="js/foundation/foundation.section.js"></script>
+	<script src="js/foundation/foundation.tooltips.js"></script>
+	<script src="js/foundation/foundation.topbar.js"></script>
+	<script src="js/foundation/foundation.interchange.js"></script>
+	<script src="js/foundation/foundation.placeholder.js"></script>
+  
+  
+	<script id="vertex" type="x-shader"> 
+		attribute vec2 aVertexPosition;
+		
+		void main() {
+			gl_Position = vec4(aVertexPosition, 0.0, 1.0);
+		}			
+	</script> 
+		
+	<script id="fragment" type="x-shader">
+		#ifdef GL_ES
+		precision highp float;
+		#endif
+		
+		uniform vec4 uColor;
+		
+		void main() {
+			gl_FragColor = uColor;
+		}
+	</script>  
+	
+	<script type="text/javascript">
+		function init(){
+			canvas = document.getElementById("mycanvas");
+			gl = canvas.getContext("experimental-webgl");
+
+			gl.viewport(0, 0, canvas.width, canvas.height);	
+			gl.clearColor(0.513725, 0.78431372, 0.89411764705, 1);
+			gl.clear(gl.COLOR_BUFFER_BIT);
+
+			var v = document.getElementById("vertex").firstChild.nodeValue;
+			var f = document.getElementById("fragment").firstChild.nodeValue;
+			
+			var vs = gl.createShader(gl.VERTEX_SHADER);
+			gl.shaderSource(vs, v);
+			gl.compileShader(vs);
+			
+			var fs = gl.createShader(gl.FRAGMENT_SHADER);
+			gl.shaderSource(fs, f);
+			gl.compileShader(fs);
+
+			program = gl.createProgram();
+			gl.attachShader(program, vs);
+			gl.attachShader(program, fs);
+			gl.linkProgram(program);
+			
+			if (!gl.getShaderParameter(vs, gl.COMPILE_STATUS)) 
+				console.log(gl.getShaderInfoLog(vs));
+				
+			if (!gl.getShaderParameter(fs, gl.COMPILE_STATUS)) 
+				console.log(gl.getShaderInfoLog(fs));
+			
+			if (!gl.getProgramParameter(program, gl.LINK_STATUS)) 
+				console.log(gl.getProgramInfoLog(program));
+				
+			var aspect = canvas.width / canvas.height;
+			
+			var vertices = new Float32Array([
+				-0.5, 0.5*aspect, 0.5, 0.5*aspect,  0.5,-0.5*aspect,
+				-0.5, 0.5*aspect, 0.5,-0.5*aspect, -0.5,-0.5*aspect
+				]);
+			
+			vbuffer = gl.createBuffer();
+			gl.bindBuffer(gl.ARRAY_BUFFER, vbuffer);					
+			gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+			
+			itemSize = 2;
+			numItems = vertices.length / itemSize;
+
+			gl.useProgram(program); 
+
+			program.uColor = gl.getUniformLocation(program, "uColor");
+			gl.uniform4fv(program.uColor, [0.145098, 0.4235294, 0.53333333, 1.0]);
+
+			program.aVertexPosition = gl.getAttribLocation(program, "aVertexPosition");
+			gl.enableVertexAttribArray(program.aVertexPosition);
+			gl.vertexAttribPointer(program.aVertexPosition, itemSize, gl.FLOAT, false, 0, 0);
+
+			gl.drawArrays(gl.TRIANGLES, 0, numItems);
+		}
+	</script> 
+	
+	<script type="text/javascript">
+	(function() {
+		init();
+		prettyPrint();
+	})();
+	</script>
+		
+	
+		<script>
+		$(document).foundation();
+		</script>		
+	
+		
+	</body>
+</html>
